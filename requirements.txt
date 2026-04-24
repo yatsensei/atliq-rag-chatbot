@@ -1,6 +1,9 @@
 langchain
 langchain-community
 langchain-groq
+langchain-classic
+langchain-qdrant
+langchain-huggingface
 sentence-transformers
 qdrant-client
 streamlit
