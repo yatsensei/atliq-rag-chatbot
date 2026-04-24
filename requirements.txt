@@ -1,0 +1,14 @@
+langchain
+langchain-community
+langchain-groq
+sentence-transformers
+qdrant-client
+streamlit
+python-dotenv
+ragas
+langsmith
+spacy
+presidio-analyzer
+presidio-anonymizer
+pypdf
+docling
