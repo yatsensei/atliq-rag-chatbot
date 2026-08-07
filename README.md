@@ -10,6 +10,26 @@ An enterprise-grade Retrieval-Augmented Generation (RAG) system built to securel
 * **Automated Evaluation:** Integrated with the Ragas framework to mathematically prove AI accuracy (achieving 1.00 Faithfulness and 1.00 Context Recall).
 * **Cost Tracking & Observability:** Real-time token cost estimation displayed in the Streamlit UI, with full backend tracing powered by LangSmith.
 
+## 🖥️ Interface
+
+The Streamlit front end is styled as an internal enterprise console: a role-scoped
+workspace, per-answer citations, and live governance telemetry in the sidebar.
+
+| Workspace overview | Grounded answer with citations |
+| --- | --- |
+| ![Workspace overview](docs/screenshots/01-workspace-overview.png) | ![Grounded answer](docs/screenshots/02-grounded-answer-citations.png) |
+
+| RBAC boundary enforced | Prompt injection blocked |
+| --- | --- |
+| ![RBAC boundary](docs/screenshots/04-rbac-access-boundary.png) | ![Injection blocked](docs/screenshots/07-prompt-injection-blocked.png) |
+
+Every response carries its retrieval status, latency, estimated cost and the exact
+source documents it was built from. The sidebar shows the departments the active
+role may search, the documents indexed for it, and the state of each guardrail.
+
+More screenshots — including the Finance and Executive workspaces — live in
+[`docs/screenshots/`](docs/screenshots).
+
 ## 🛠️ Tech Stack
 
 * **LLM:** Llama 3.1 8B (via Groq API for ultra-low latency)
