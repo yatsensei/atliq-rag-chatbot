@@ -1,0 +1,801 @@
+/* ==========================================================================
+   AtliQ Intelligence — enterprise UI theme
+   Design tokens + component styling layered on top of Streamlit primitives.
+   ========================================================================== */
+
+:root {
+    --aq-bg: #f7f8fa;
+    --aq-surface: #ffffff;
+    --aq-surface-muted: #f1f3f7;
+    --aq-border: #e3e7ee;
+    --aq-border-strong: #d3d9e4;
+    --aq-text: #0f172a;
+    --aq-text-muted: #64748b;
+    --aq-text-subtle: #94a3b8;
+    --aq-primary: #2563eb;
+    --aq-primary-dark: #1d4ed8;
+    --aq-primary-soft: #eff4ff;
+    --aq-success: #0f9d58;
+    --aq-success-soft: #e9f7ef;
+    --aq-warning: #b45309;
+    --aq-warning-soft: #fef6e7;
+    --aq-danger: #b42318;
+    --aq-danger-soft: #fdecea;
+    --aq-radius: 12px;
+    --aq-radius-sm: 8px;
+    --aq-shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.05);
+    --aq-shadow-md: 0 1px 3px rgba(15, 23, 42, 0.06), 0 8px 24px -12px rgba(15, 23, 42, 0.12);
+    --aq-font: "Inter", "Segoe UI", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+    --aq-mono: "JetBrains Mono", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+}
+
+/* --------------------------------------------------------------- shell --- */
+
+html, body, [class*="st-"], button, input, textarea, select {
+    font-family: var(--aq-font);
+    -webkit-font-smoothing: antialiased;
+}
+
+/* the rule above is deliberately broad, so hand Streamlit's icon glyphs back
+   their own font — otherwise they render as raw ligature text */
+[data-testid="stIconMaterial"],
+span.material-symbols-rounded {
+    font-family: "Material Symbols Rounded" !important;
+}
+
+[data-testid="stAppViewContainer"] {
+    background: var(--aq-bg);
+}
+
+[data-testid="stHeader"] {
+    display: none;
+}
+
+[data-testid="stMainBlockContainer"] {
+    padding: 1.75rem 3rem 8rem 3rem;
+    max-width: 1180px;
+}
+
+footer, #MainMenu {
+    visibility: hidden;
+}
+
+/* ------------------------------------------------------------- topbar --- */
+
+.aq-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.9rem 1.25rem;
+    background: var(--aq-surface);
+    border: 1px solid var(--aq-border);
+    border-radius: var(--aq-radius);
+    box-shadow: var(--aq-shadow-sm);
+    margin-bottom: 1.25rem;
+}
+
+.aq-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+}
+
+.aq-logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    box-shadow: 0 4px 12px -4px rgba(37, 99, 235, 0.6);
+}
+
+.aq-brand-name {
+    font-size: 1.02rem;
+    font-weight: 650;
+    color: var(--aq-text);
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+}
+
+.aq-brand-sub {
+    font-size: 0.775rem;
+    color: var(--aq-text-muted);
+    line-height: 1.3;
+}
+
+.aq-topbar-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+/* -------------------------------------------------------------- chips --- */
+
+.aq-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.28rem 0.6rem;
+    border-radius: 999px;
+    border: 1px solid var(--aq-border);
+    background: var(--aq-surface-muted);
+    color: var(--aq-text-muted);
+    font-size: 0.72rem;
+    font-weight: 550;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+}
+
+.aq-chip--ok {
+    background: var(--aq-success-soft);
+    border-color: rgba(15, 157, 88, 0.22);
+    color: #0b7a44;
+}
+
+.aq-chip--accent {
+    background: var(--aq-primary-soft);
+    border-color: rgba(37, 99, 235, 0.2);
+    color: var(--aq-primary-dark);
+}
+
+.aq-chip--alert {
+    background: var(--aq-danger-soft);
+    border-color: rgba(180, 35, 24, 0.22);
+    color: var(--aq-danger);
+}
+
+.aq-chip--mono {
+    font-family: var(--aq-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.04em;
+}
+
+.aq-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+    display: inline-block;
+}
+
+/* ------------------------------------------------------------ sidebar --- */
+
+[data-testid="stSidebar"] {
+    background: var(--aq-surface);
+    border-right: 1px solid var(--aq-border);
+}
+
+[data-testid="stSidebar"] [data-testid="stSidebarUserContent"] {
+    padding: 1.25rem 1.1rem 2rem 1.1rem;
+}
+
+[data-testid="stSidebarCollapsedControl"] {
+    top: 0.9rem;
+}
+
+.aq-side-title {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding-bottom: 0.9rem;
+    margin-bottom: 0.9rem;
+    border-bottom: 1px solid var(--aq-border);
+}
+
+.aq-side-title .aq-logo {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+}
+
+/* padding, not margin: Streamlit measures the injected block by its content
+   box, so margins would collapse and the sections would overlap */
+.aq-label {
+    font-size: 0.66rem;
+    font-weight: 650;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--aq-text-subtle);
+    line-height: 1;
+    padding: 1.4rem 0 0.6rem 0;
+}
+
+.aq-label--first {
+    padding-top: 0;
+}
+
+/* Streamlit stacks sidebar children with its own gap; keep it tight so the
+   section labels stay visually attached to the block they introduce. */
+[data-testid="stSidebar"] [data-testid="stVerticalBlock"] {
+    gap: 0.25rem;
+}
+
+/* identity card */
+
+.aq-identity {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.7rem 0.8rem;
+    border: 1px solid var(--aq-border);
+    border-radius: var(--aq-radius-sm);
+    background: var(--aq-surface-muted);
+}
+
+.aq-avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #0f172a;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.74rem;
+    font-weight: 650;
+    flex-shrink: 0;
+}
+
+.aq-identity-name {
+    font-size: 0.83rem;
+    font-weight: 600;
+    color: var(--aq-text);
+    line-height: 1.3;
+}
+
+.aq-identity-role {
+    font-size: 0.72rem;
+    color: var(--aq-text-muted);
+    line-height: 1.3;
+}
+
+/* metric tiles */
+
+.aq-metrics {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.55rem;
+}
+
+.aq-metric {
+    padding: 0.65rem 0.7rem;
+    border: 1px solid var(--aq-border);
+    border-radius: var(--aq-radius-sm);
+    background: var(--aq-surface);
+}
+
+.aq-metric-label {
+    font-size: 0.64rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--aq-text-subtle);
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.aq-metric-value {
+    font-size: 1.02rem;
+    font-weight: 650;
+    color: var(--aq-text);
+    font-family: var(--aq-mono);
+    letter-spacing: -0.02em;
+    margin-top: 0.15rem;
+}
+
+/* control / posture list */
+
+.aq-control {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.5rem 0.7rem;
+    border: 1px solid var(--aq-border);
+    border-radius: var(--aq-radius-sm);
+    background: var(--aq-surface);
+    margin-bottom: 0.4rem;
+}
+
+.aq-control-name {
+    font-size: 0.76rem;
+    color: var(--aq-text);
+    font-weight: 520;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
+}
+
+.aq-control-state {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #0b7a44;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.aq-scope {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+}
+
+.aq-footnote {
+    font-size: 0.7rem;
+    color: var(--aq-text-subtle);
+    line-height: 1.5;
+    margin-top: 1.25rem;
+    padding-top: 0.85rem;
+    border-top: 1px solid var(--aq-border);
+}
+
+/* ------------------------------------------------------ empty / hero --- */
+
+.aq-hero {
+    padding: 2.1rem 2rem;
+    border: 1px solid var(--aq-border);
+    border-radius: var(--aq-radius);
+    background:
+        radial-gradient(120% 120% at 0% 0%, #eef3ff 0%, rgba(255, 255, 255, 0) 55%),
+        var(--aq-surface);
+    box-shadow: var(--aq-shadow-sm);
+    margin-bottom: 1.1rem;
+}
+
+.aq-hero h2 {
+    font-size: 1.35rem;
+    font-weight: 650;
+    color: var(--aq-text);
+    margin: 0.6rem 0 0.45rem 0;
+    letter-spacing: -0.02em;
+}
+
+.aq-hero p {
+    font-size: 0.9rem;
+    color: var(--aq-text-muted);
+    margin: 0;
+    max-width: 46rem;
+    line-height: 1.6;
+}
+
+.aq-hero-eyebrow {
+    font-size: 0.68rem;
+    font-weight: 650;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--aq-primary);
+}
+
+.aq-capabilities {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+}
+
+.aq-capability {
+    padding: 0.85rem 0.9rem;
+    border: 1px solid var(--aq-border);
+    border-radius: var(--aq-radius-sm);
+    background: var(--aq-surface);
+}
+
+.aq-capability-title {
+    font-size: 0.8rem;
+    font-weight: 620;
+    color: var(--aq-text);
+    margin-bottom: 0.2rem;
+}
+
+.aq-capability-body {
+    font-size: 0.74rem;
+    color: var(--aq-text-muted);
+    line-height: 1.5;
+}
+
+/* knowledge base coverage */
+
+.aq-coverage {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+}
+
+.aq-source-card {
+    padding: 0.9rem 1rem;
+    border: 1px solid var(--aq-border);
+    border-radius: var(--aq-radius-sm);
+    background: var(--aq-surface);
+    box-shadow: var(--aq-shadow-sm);
+}
+
+.aq-source-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.6rem;
+    padding-bottom: 0.55rem;
+    border-bottom: 1px solid var(--aq-border);
+}
+
+.aq-source-dept {
+    font-size: 0.8rem;
+    font-weight: 620;
+    color: var(--aq-text);
+}
+
+.aq-source-count {
+    font-size: 0.66rem;
+    font-family: var(--aq-mono);
+    color: var(--aq-text-subtle);
+    letter-spacing: 0.02em;
+}
+
+.aq-source-file {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.74rem;
+    color: var(--aq-text-muted);
+    padding: 0.16rem 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.aq-source-file::before {
+    content: "";
+    width: 5px;
+    height: 5px;
+    border-radius: 1px;
+    background: var(--aq-border-strong);
+    flex-shrink: 0;
+}
+
+.aq-section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin: 0.2rem 0 0.6rem 0;
+}
+
+.aq-section-head span:first-child {
+    font-size: 0.68rem;
+    font-weight: 650;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--aq-text-subtle);
+}
+
+.aq-section-head span:last-child {
+    font-size: 0.72rem;
+    color: var(--aq-text-subtle);
+}
+
+/* ------------------------------------------------------------- chat ---- */
+
+[data-testid="stChatMessage"] {
+    background: var(--aq-surface);
+    border: 1px solid var(--aq-border);
+    border-radius: var(--aq-radius);
+    padding: 1rem 1.15rem;
+    box-shadow: var(--aq-shadow-sm);
+    margin-bottom: 0.85rem;
+    gap: 0.9rem;
+}
+
+[data-testid="stChatMessage"] p,
+[data-testid="stChatMessage"] li {
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: var(--aq-text);
+}
+
+/* the message header below carries our own avatar, so drop Streamlit's */
+[data-testid="stChatMessage"] > [data-testid^="stChatMessageAvatar"] {
+    display: none;
+}
+
+.aq-msg-head {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding-bottom: 0.6rem;
+}
+
+.aq-msg-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.68rem;
+    font-weight: 650;
+    color: #ffffff;
+    flex-shrink: 0;
+    letter-spacing: 0.01em;
+}
+
+.aq-msg-avatar--user {
+    background: #0f172a;
+}
+
+.aq-msg-avatar--assistant {
+    background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);
+    box-shadow: 0 3px 10px -4px rgba(37, 99, 235, 0.7);
+}
+
+.aq-msg-time {
+    margin-left: auto;
+    font-size: 0.68rem;
+    color: var(--aq-text-subtle);
+    font-family: var(--aq-mono);
+}
+
+.aq-msg-author {
+    font-size: 0.78rem;
+    font-weight: 650;
+    color: var(--aq-text);
+    letter-spacing: -0.005em;
+}
+
+/* answer footer: latency / tokens / cost */
+
+.aq-meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.1rem;
+    margin-top: 0.9rem;
+    padding-top: 0.7rem;
+    border-top: 1px dashed var(--aq-border);
+}
+
+.aq-meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+}
+
+.aq-meta-key {
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--aq-text-subtle);
+    font-weight: 600;
+}
+
+.aq-meta-val {
+    font-size: 0.76rem;
+    font-family: var(--aq-mono);
+    color: var(--aq-text);
+    font-weight: 550;
+}
+
+/* citations */
+
+.aq-cite {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.55rem 0.7rem;
+    border: 1px solid var(--aq-border);
+    border-radius: var(--aq-radius-sm);
+    background: var(--aq-surface-muted);
+    margin-bottom: 0.4rem;
+}
+
+.aq-cite-index {
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+    background: var(--aq-surface);
+    border: 1px solid var(--aq-border-strong);
+    color: var(--aq-text-muted);
+    font-size: 0.68rem;
+    font-family: var(--aq-mono);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.aq-cite-name {
+    font-size: 0.79rem;
+    color: var(--aq-text);
+    font-weight: 550;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.aq-cite-meta {
+    margin-left: auto;
+    font-size: 0.68rem;
+    color: var(--aq-text-subtle);
+    font-family: var(--aq-mono);
+    white-space: nowrap;
+}
+
+/* security / policy notice */
+
+.aq-notice {
+    display: flex;
+    gap: 0.75rem;
+    padding: 0.85rem 0.95rem;
+    border-radius: var(--aq-radius-sm);
+    border: 1px solid transparent;
+    align-items: flex-start;
+}
+
+.aq-notice--danger {
+    background: var(--aq-danger-soft);
+    border-color: rgba(180, 35, 24, 0.2);
+}
+
+.aq-notice--warn {
+    background: var(--aq-warning-soft);
+    border-color: rgba(180, 83, 9, 0.2);
+}
+
+.aq-notice-icon {
+    font-size: 0.95rem;
+    line-height: 1.3;
+}
+
+.aq-notice-title {
+    font-size: 0.8rem;
+    font-weight: 650;
+    margin-bottom: 0.15rem;
+}
+
+.aq-notice--danger .aq-notice-title { color: var(--aq-danger); }
+.aq-notice--warn .aq-notice-title { color: var(--aq-warning); }
+
+.aq-notice-body {
+    font-size: 0.8rem;
+    color: var(--aq-text-muted);
+    line-height: 1.55;
+}
+
+/* --------------------------------------------------------- expanders --- */
+
+[data-testid="stExpander"] {
+    border: 1px solid var(--aq-border);
+    border-radius: var(--aq-radius-sm);
+    background: var(--aq-surface);
+    box-shadow: none;
+    margin-top: 0.85rem;
+}
+
+[data-testid="stExpander"] summary {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--aq-text-muted);
+    padding: 0.45rem 0.75rem;
+}
+
+[data-testid="stExpander"] summary:hover {
+    color: var(--aq-primary);
+}
+
+/* ----------------------------------------------------------- inputs ----- */
+
+[data-testid="stChatInput"] {
+    border: 1px solid var(--aq-border-strong);
+    border-radius: var(--aq-radius);
+    background: var(--aq-surface);
+    box-shadow: var(--aq-shadow-md);
+}
+
+[data-testid="stChatInput"]:focus-within {
+    border-color: var(--aq-primary);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12), var(--aq-shadow-md);
+}
+
+[data-testid="stBottomBlockContainer"] {
+    background: linear-gradient(to bottom, rgba(247, 248, 250, 0) 0%, var(--aq-bg) 32%);
+    padding-bottom: 0.9rem;
+    max-width: 1180px;
+}
+
+.aq-disclaimer {
+    text-align: center;
+    font-size: 0.7rem;
+    color: var(--aq-text-subtle);
+    line-height: 1.5;
+    margin: 1.6rem 0 0 0;
+    padding-top: 1rem;
+    border-top: 1px solid var(--aq-border);
+}
+
+/* selectbox */
+
+[data-testid="stSelectbox"] div[data-baseweb="select"] > div {
+    border-radius: var(--aq-radius-sm);
+    border-color: var(--aq-border-strong);
+    background: var(--aq-surface);
+    font-size: 0.83rem;
+    min-height: 38px;
+}
+
+[data-testid="stSelectbox"] label {
+    display: none;
+}
+
+/* buttons */
+
+.stButton > button {
+    border-radius: var(--aq-radius-sm);
+    border: 1px solid var(--aq-border-strong);
+    background: var(--aq-surface);
+    color: var(--aq-text);
+    font-size: 0.8rem;
+    font-weight: 550;
+    padding: 0.5rem 0.8rem;
+    box-shadow: var(--aq-shadow-sm);
+    transition: border-color 120ms ease, color 120ms ease, background 120ms ease;
+    text-align: left;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.stButton > button:hover {
+    border-color: var(--aq-primary);
+    color: var(--aq-primary-dark);
+    background: var(--aq-primary-soft);
+}
+
+.stButton > button:focus:not(:active) {
+    color: var(--aq-primary-dark);
+    border-color: var(--aq-primary);
+}
+
+.stButton > button p {
+    font-size: 0.8rem;
+    line-height: 1.45;
+    text-align: left;
+    width: 100%;
+}
+
+/* keep the suggested-prompt row on a single baseline when a label wraps */
+[data-testid="stHorizontalBlock"] .stButton > button {
+    min-height: 58px;
+    align-items: center;
+}
+
+/* spinner */
+
+[data-testid="stSpinner"] > div {
+    font-size: 0.8rem;
+    color: var(--aq-text-muted);
+}
+
+hr {
+    border-color: var(--aq-border);
+    margin: 0.9rem 0;
+}
+
+/* --------------------------------------------------------- responsive --- */
+
+@media (max-width: 900px) {
+    [data-testid="stMainBlockContainer"] {
+        padding: 1.25rem 1.25rem 8rem 1.25rem;
+    }
+
+    .aq-capabilities {
+        grid-template-columns: 1fr;
+    }
+}
